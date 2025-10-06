@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import { Link } from 'react-router-dom';
-import dotenv from "dotenv";
 
 export default function Home() {
     const [getNews, setGetNews] = useState([]);
@@ -70,10 +68,10 @@ export default function Home() {
                             >Next⏩</button>
                         </div>
                         <p className='descNews'>{news.description}
-                            <Link className="readMoreURL"
+                            <a href={news.url} className="readMoreURL"
                                 target="_blank"
-                                to={news.url}> Read More..
-                            </Link>
+                                > Read More..
+                            </a>
                         </p>
                     </>
                     : <p>Loading news...</p>

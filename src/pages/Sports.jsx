@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import { Link } from 'react-router-dom';
 
 export default function Sports() {
     const [sportsNews, setSportsNews] = useState([]);
@@ -69,10 +68,11 @@ export default function Sports() {
                             >Next⏩</button>
                         </div>
                         <p className='descNews'>{news.description}
-                            <Link className="readMoreURL"
+                            <a href={news.url} className="readMoreURL"
                                 target="_blank"
-                                to={news.url}> Read More..
-                            </Link>
+                            > Read More..
+                            </a>
+
                         </p>
                     </>
                     : <p>Loading news...</p>
