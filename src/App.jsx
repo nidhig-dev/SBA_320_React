@@ -11,16 +11,14 @@ import TopNews from './pages/TopNews';
 import Search from './pages/Search';
 
 function App() {
-  const [getNews, setGetNews] = useState([]);
-
+  
 
   return (
     <>
     <NavBar/>  
-    <hr></hr> 
     <Routes>
-      <Route path="/" element={<Home getNews={getNews} setGetNews={setGetNews}/>}/>
-      <Route path="/TopNews/:title" element={<TopNews getNews={getNews}/>}/>
+      <Route path="/" element={<Home />}/>
+      {/* <Route path="/TopNews/:title" element={<TopNews getNews={getNews}/>}/> */}
       <Route path="/Search" element={<Search/>}/>   
     </Routes>
     </>

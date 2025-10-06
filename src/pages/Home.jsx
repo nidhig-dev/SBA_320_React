@@ -5,23 +5,24 @@ import dotenv from "dotenv";
 //import pages
 import TopNews from "./TopNews";
 
-export default function Home({getNews,setGetNews}) {
-    
+export default function Home() {
+    const [getNews, setGetNews] = useState([]);
+
+    const [index, setIndex] = useState(0);
     const apiKey = import.meta.env.VITE_API_KEY;
     async function getData() {
-        try{
+        try {
             let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`)
             console.log(res.data.articles);
-            if(res.data.articles.length>0)
-            {
+            if (res.data.articles.length > 0) {
                 setGetNews(res.data.articles);
             }
-            else{
+            else {
                 console.error("No data found")
             }
-           
+
         }
-        catch(err){
+        catch (err) {
             console.error(err.message)
         }
     }
@@ -29,32 +30,56 @@ export default function Home({getNews,setGetNews}) {
         getData();
 
     }, [])
+    function handleNext() {
+        //if reached end of array,keep last index
+        if(index==getNews.length-1){
+            setIndex(getNews.length-1);
+        }
+        //else increment the index to fetch next news
+        else{
+            setIndex(index=>(index+1));
+        }
+    }
+    function handlePrev() {
+        //if reached end of array,keep last index
+        if (index == 0) {
+            setIndex(0);
+        }
+        //else increment the index to fetch next news
+        else {
+            setIndex(index => (index - 1));
+        }
+    }
+    console.log(index);
+    let news = getNews[index];
+    console.log(news);
     return (
         <div>
-            <ul style={{margin:"0",
-                        paddingLeft:0
-            }}>
-                {
-                    getNews.map((news) => (
-                        <li className="listNews" key={news.title}>
-                            <h2>{news.title}</h2>
-                            {(news.author)?
-                            
-                            <p> By: {news.author}</p>
-                            :<p></p>
-                            }
-                            <Link to={`/TopNews/${news.title}`}>
-                                <img className="imgNews"
-                                 src={news.urlToImage}
-                                 alt={news.title}/>
+            {
+                (news) ?
+                    <>
+                        <h2>{news.title.toUpperCase()}</h2>
+                        <p>By: {news.author}| Published at: {news.publishedAt}</p>
+                        <div className='imgContainer'>
+                            <button className='navBtn'
+                                onClick={handlePrev}
+                                >Prev⏪</button>
+                            <img className="imgTopNews"
+                                src={news.urlToImage}
+                                alt={news.title} />
+                            <button className='navBtn'
+                                onClick={handleNext}
+                            >Next⏩</button>
+                        </div>
+                        <p className='descNews'>{news.description}
+                            <Link className="readMoreURL"
+                                target="_blank"
+                                to={news.url}> Read More..
                             </Link>
-                            
-                            
-                        </li>
-                    ))
-                }
-
-            </ul>
+                        </p>
+                    </>
+                    : <p>Loading news...</p>
+            }
         </div>
     )
 }
