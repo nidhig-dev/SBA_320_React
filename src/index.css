@@ -15,13 +15,11 @@
 
 a {
   font-weight: 500;
-  color:rgb(0, 0, 0);
-  /* color: #646cff; */
+  color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
-  color:black;
-  /* color: #535bf2; */
+  color: #535bf2;
 }
 
 body {

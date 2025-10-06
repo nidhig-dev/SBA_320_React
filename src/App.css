@@ -1,34 +1,59 @@
-#root,html,body {
+#root,
+html,
+body {
   margin: 0 auto;
-  padding:0;
+  padding: 0;
   text-align: center;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
 }
-.navbar{
-  width:100%;
-  display:flex;
-  padding:25px;
 
+.navbar {
+  width: 100%;
+  display: flex;
+  padding: 25px;
   justify-content: space-around;
-  /* background-color: rgba(70, 131, 180, 0.767); */
-  color:black;
+  color: black;
 }
 
-.listNews{
+.navbar h1{
+  padding:0;
+  margin:0;
+  border:0;
+}
+.listNews {
   list-style: none;
-  width:100%;
+  width: 100%;
   background-color: black;
-  margin:0px 0px 30px 0px;
-  padding:15px;
-  color:white;
+  margin: 0px 0px 1px 0px;
+  padding: 15px;
+  color: white;
 }
-.imgNews{
-  padding:15px;
-  width:auto;
-  height:300px;
+
+.imgNews {
+  padding: 15px;
+  width: auto;
+  height: 300px;
+}
+.imgNews:hover{
+  img:hover {
+  opacity: 0.8;               /* Make image slightly transparent */
+  transform: scale(1.05);     /* Zoom in a little */
+  filter: brightness(1.1);    /* Brighten the image */
+  border: 2px solid #007bff;  /* Add a border */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow */
+  transition: all 0.3s ease;  /* Smooth transition */
+}
 
 }
-.linkURL{
-  color:black;
+.imgTopNews{
+  padding: 5px;  
+  width: 75%;
+}
+.descNews{
+  padding:15px;
+  text-align: center;
+}
+.linkURL {
+  color: black;
 }

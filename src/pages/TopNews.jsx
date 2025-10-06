@@ -13,13 +13,15 @@ export default function TopNews({ getNews }) {
             {
                 (news) ?
                     <>
-                        <img className="imgNews"
+                    <h2>{news.title.toUpperCase()}</h2>
+                    <p>By: {news.author}| Published at: {news.publishedAt}</p>
+                        <img className="imgTopNews"
                             src={news.urlToImage}
                             alt={news.title} />
-                        <p>{news.content}
+                        <p className='descNews'>{news.description}
                             <Link className="linkURL"
                                 target="_blank"
-                                to={news.url}>Read More
+                                to={news.url}> Read More
                             </Link>
                         </p>
                         

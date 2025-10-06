@@ -37,10 +37,10 @@ export default function Home({getNews,setGetNews}) {
                 {
                     getNews.map((news) => (
                         <li className="listNews" key={news.title}>
-                            <b>Title:{news.title}</b>
+                            <h2>{news.title}</h2>
                             {(news.author)?
                             
-                            <p> written by: {news.author}</p>
+                            <p> By: {news.author}</p>
                             :<p></p>
                             }
                             <Link to={`/TopNews/${news.title}`}>
