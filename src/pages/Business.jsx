@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import dotenv from "dotenv";
 
-export default function Home() {
-    const [getNews, setGetNews] = useState([]);
+export default function Business() {
+    const [businessNews, setBusinessNews] = useState([]);
 
-    const [index, setIndex] = useState(0);
+    const [businessIndex, setBusinessIndex] = useState(0);
     const apiKey = import.meta.env.VITE_API_KEY;
     async function getData() {
         try {
-            let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`)
+            let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`)
             console.log(res.data.articles);
             if (res.data.articles.length > 0) {
-                setGetNews(res.data.articles);
+                setBusinessNews(res.data.articles);
             }
             else {
                 console.error("No data found")
@@ -30,26 +29,26 @@ export default function Home() {
     }, [])
     function handleNext() {
         //if reached end of array,keep last index
-        if (index == getNews.length - 1) {
-            setIndex(getNews.length - 1);
+        if (businessIndex == businessNews.length - 1) {
+            setBusinessIndex(businessNews.length - 1);
         }
         //else increment the index to fetch next news
         else {
-            setIndex(index => (index + 1));
+            setBusinessIndex(businessIndex => (businessIndex + 1));
         }
     }
     function handlePrev() {
         //if reached end of array,keep last index
-        if (index == 0) {
-            setIndex(0);
+        if (businessIndex == 0) {
+            setBusinessIndex(0);
         }
         //else increment the index to fetch next news
         else {
-            setIndex(index => (index - 1));
+            setBusinessIndex(businessIndex => (businessIndex - 1));
         }
     }
-    console.log(index);
-    let news = getNews[index];
+    console.log(businessIndex);
+    let news = businessNews[businessIndex];
     console.log(news);
     return (
         <div>
@@ -81,3 +80,16 @@ export default function Home() {
         </div>
     )
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

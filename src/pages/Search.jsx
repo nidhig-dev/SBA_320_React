@@ -24,11 +24,12 @@ export default function Search() {
                 console.error("Enter Search Title!")
             }
             else{
-            let res = await axios.get(`https://newsapi.org/v2/everything?q=${searchNews}&apiKey=${apiKey}`)
+                let res = await axios.get(`https://newsapi.org/v2/everything?q=${searchNews}&language=en&sortBy=relevancy&apiKey=${apiKey}`)
             console.log(res.data.articles);
             if (res.data.articles.length > 0) {
                 setSearchResult(res.data.articles);
                 setDisplay(true);
+                setSearchNews("");
             }
             else {
                 console.error("No data found")
@@ -83,7 +84,7 @@ export default function Search() {
         <>
               <p>{searchResult.length} results found.</p>
               <h2>{news.title.toUpperCase()}</h2>
-              <p>By: {news.author}| Published at: {news.publishedAt}</p>
+              <p>By: {news.author} | Published at: {news.publishedAt}</p>
               <div className='imgContainer'>
                   <button className='navBtn'
                       onClick={handlePrev}

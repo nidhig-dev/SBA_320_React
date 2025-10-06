@@ -23,3 +23,9 @@ I have used a API_KEY in my .dotenv file
 - Well documented - README.md
 - Thorough commit history.  12 - 15 commits
 - Reasonable CSS
+
+
+## things to do:
+
+add use ref on search
+disable prev and next button accordingly.
