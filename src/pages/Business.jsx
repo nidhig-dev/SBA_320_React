@@ -3,15 +3,17 @@ import axios from "axios";
 
 export default function Business() {
     const [businessNews, setBusinessNews] = useState([]);
-
     const [businessIndex, setBusinessIndex] = useState(0);
     const apiKey = import.meta.env.VITE_API_KEY;
+    let isFirst;
+    let isLast;
     async function getData() {
         try {
             let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`)
             console.log(res.data.articles);
             if (res.data.articles.length > 0) {
                 setBusinessNews(res.data.articles);
+                
             }
             else {
                 console.error("No data found")
@@ -29,26 +31,35 @@ export default function Business() {
     function handleNext() {
         //if reached end of array,keep last index
         if (businessIndex == businessNews.length - 1) {
-            setBusinessIndex(businessNews.length - 1);
+            setBusinessIndex(businessNews.length - 1);           
         }
         //else increment the index to fetch next news
         else {
             setBusinessIndex(businessIndex => (businessIndex + 1));
-        }
+                  }
     }
     function handlePrev() {
         //if reached end of array,keep last index
         if (businessIndex == 0) {
-            setBusinessIndex(0);
+            setBusinessIndex(0);           
         }
         //else increment the index to fetch next news
         else {
             setBusinessIndex(businessIndex => (businessIndex - 1));
+           
         }
     }
     console.log(businessIndex);
     let news = businessNews[businessIndex];
     console.log(news);
+    if (businessIndex == 0) {
+        isFirst = true;
+
+    }
+    if (businessIndex == businessNews.length - 1) {
+        isLast = true;
+
+    }
     return (
         <div>
             {
@@ -58,12 +69,14 @@ export default function Business() {
                         <p>By: {news.author} | Published at: {news.publishedAt}</p>
                         <div className='imgContainer'>
                             <button className='navBtn'
+                            disabled={isFirst}
                                 onClick={handlePrev}
                             >Prev⏪</button>
                             <img className="imgTopNews"
                                 src={news.urlToImage}
                                 alt={news.title} />
                             <button className='navBtn'
+                                disabled={isLast}
                                 onClick={handleNext}
                             >Next⏩</button>
                         </div>
