@@ -18,7 +18,6 @@ function App() {
     <NavBar/>  
     <Routes>
       <Route path="/" element={<Home />}/>
-      {/* <Route path="/TopNews/:title" element={<TopNews getNews={getNews}/>}/> */}
       <Route path="/Search" element={<Search/>}/>   
     </Routes>
     </>
