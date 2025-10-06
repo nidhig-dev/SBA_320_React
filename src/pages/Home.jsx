@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 import axios from "axios";
 
 export default function Home() {
+    //state to manage top tranding news
     const [getNews, setGetNews] = useState([]);
+    //state to manage index of carousal
     const [index, setIndex] = useState(0);
-    let isFirst,isLast;
+    //Boolean to disable the Prev and next button
+    let isFirst, isLast;
     const apiKey = import.meta.env.VITE_API_KEY;
     async function getData() {
         try {
             let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`)
-            console.log(res.data.articles);
             if (res.data.articles.length > 0) {
                 setGetNews(res.data.articles);
             }
@@ -37,25 +39,24 @@ export default function Home() {
         }
     }
     function handlePrev() {
-        //if reached end of array,keep last index
+        //if reached first of array,keep first index
         if (index == 0) {
             setIndex(0);
         }
-        //else increment the index to fetch next news
+        //else deccrement the index to fetch prev news
         else {
             setIndex(index => (index - 1));
         }
     }
-    console.log(index);
+    //Get one news article
     let news = getNews[index];
-    console.log(news);
+    //if its the first article set prev disable boolean true
     if (index == 0) {
         isFirst = true;
-
     }
+    //if its the last article set next disable boolean true
     if (index == getNews.length - 1) {
         isLast = true;
-
     }
     return (
         <div>
@@ -66,21 +67,21 @@ export default function Home() {
                         <p>By: {news.author} | Published at: {news.publishedAt}</p>
                         <div className='imgContainer'>
                             <button className='navBtn'
-                            disabled={isFirst}
+                                disabled={isFirst}
                                 onClick={handlePrev}
                             >Prev⏪</button>
                             <img className="imgTopNews"
                                 src={news.urlToImage}
                                 alt={news.title} />
                             <button className='navBtn'
-                            disabled={isLast}
+                                disabled={isLast}
                                 onClick={handleNext}
                             >Next⏩</button>
                         </div>
                         <p className='descNews'>{news.description}
                             <a href={news.url} className="readMoreURL"
                                 target="_blank"
-                                > Read More..
+                            > Read More..
                             </a>
                         </p>
                     </>
