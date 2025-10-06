@@ -54,7 +54,6 @@ export default function Business() {
     console.log(news);
     if (businessIndex == 0) {
         isFirst = true;
-
     }
     if (businessIndex == businessNews.length - 1) {
         isLast = true;

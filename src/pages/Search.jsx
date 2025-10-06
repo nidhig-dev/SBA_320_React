@@ -2,10 +2,17 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function Search() {
+    //State for input search key word
     const [searchNews, setSearchNews] = useState("");
+    //state for setting search index
     const [searchIndex, setSearchIndex] = useState(0);
+    //state for displaying search results
     const [searchResult, setSearchResult] = useState([]);
+    //state to check if search are to be displayed or not
+    //if submit button is not cklicked, do not show any result 
     const [display, setDisplay] = useState(false);
+    //Boolean to disable the Prev and next button
+    let isFirst, isLast;
     const apiKey = import.meta.env.VITE_API_KEY;
     function handleChange(e) {
 
@@ -62,7 +69,15 @@ export default function Search() {
         }
     }
     let news = searchResult[searchIndex];
-    console.log(news)
+    console.log(news);
+    if (searchIndex == 0) {
+        isFirst = true;
+
+    }
+    if (searchIndex == searchResult.length - 1) {
+        isLast = true;
+
+    }
     return (
         <div>
             <form onSubmit={(e) => handleSearchNews(e)}>
@@ -86,12 +101,14 @@ export default function Search() {
                         <p>By: {news.author} | Published at: {news.publishedAt}</p>
                         <div className='imgContainer'>
                             <button className='navBtn'
+                                disabled={isFirst}
                                 onClick={handlePrev}
                             >Prev⏪</button>
                             <img className="imgTopNews"
                                 src={news.urlToImage}
                                 alt={news.title} />
                             <button className='navBtn'
+                                disabled={isLast}
                                 onClick={handleNext}
                             >Next⏩</button>
                         </div>

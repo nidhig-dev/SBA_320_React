@@ -3,8 +3,8 @@ import axios from "axios";
 
 export default function Home() {
     const [getNews, setGetNews] = useState([]);
-
     const [index, setIndex] = useState(0);
+    let isFirst,isLast;
     const apiKey = import.meta.env.VITE_API_KEY;
     async function getData() {
         try {
@@ -49,6 +49,14 @@ export default function Home() {
     console.log(index);
     let news = getNews[index];
     console.log(news);
+    if (index == 0) {
+        isFirst = true;
+
+    }
+    if (index == getNews.length - 1) {
+        isLast = true;
+
+    }
     return (
         <div>
             {
@@ -58,12 +66,14 @@ export default function Home() {
                         <p>By: {news.author} | Published at: {news.publishedAt}</p>
                         <div className='imgContainer'>
                             <button className='navBtn'
+                            disabled={isFirst}
                                 onClick={handlePrev}
                             >Prev⏪</button>
                             <img className="imgTopNews"
                                 src={news.urlToImage}
                                 alt={news.title} />
                             <button className='navBtn'
+                            disabled={isLast}
                                 onClick={handleNext}
                             >Next⏩</button>
                         </div>
