@@ -39,12 +39,10 @@ export default function Search() {
                 setDisplay(true);
                 searchRef.current.focus();
             }
-
         }
         catch (err) {
             console.error(err.message)
         }
-
     }
     function handleNext() {
         //if reached end of array,keep last index
@@ -90,7 +88,6 @@ export default function Search() {
                 <input className="btn"
                     type="submit"
                     value="submit" />
-
             </form>
             {
                 //if submit button is clicked and search query returned data, display data

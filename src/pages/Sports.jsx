@@ -18,7 +18,6 @@ export default function Sports() {
             else {
                 console.error("No data found")
             }
-
         }
         catch (err) {
             console.error(err.message)

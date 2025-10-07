@@ -1,6 +1,6 @@
 # 📰 React + Vite News Application
 
-A dynamic and responsive news website built using **React**, powered by the **NewsAPI**. This application features multiple pages displaying top headlines, business news, sports news, and allows keyword-based news searches. Each section includes a **carousel-style navigation** for browsing news articles, and a **“Read More”** feature for viewing full articles.
+A dynamic and responsive news website built using **React**, powered by the **NewsAPI**. This application features multiple pages displaying top headlines, business news, sports news, and allows keyword-based news searches. Each page includes a **carousel-style navigation** for browsing news articles, and a **“Read More”** feature for viewing full articles.
 
 ---
 
@@ -35,19 +35,19 @@ A dynamic and responsive news website built using **React**, powered by the **Ne
 ### 1. Install Dependencies
 
 ```bash
-- `npm create vite@latest . `
-- `npm i react-router-dom`
-- `npm i axios`
-- `npm i dotenv`
+npm create vite@latest . 
+npm i react-router-dom
+npm i axios
+npm i dotenv
 
 ```
 
 ### 3. Set Up Environment Variables
 
-Create a `.env` file in the root directory and add News API key:
+Create a `.env` file in the root directory and add API key:
 
 ```env
-VITE_API_KEY=api_key_here
+VITE_API_KEY=api_key
 ```
 
 ### 4. Run the Application
@@ -93,14 +93,6 @@ src/
 └── main.jsx
 
 ```
-
----
-
-## 📌 To-Do / Improvements
-
-* [ ] Add `useRef` to improve focus/UX in the Search page.
-* [ ] Disable **Prev** button on the first page and **Next** on the last page of carousel.
-
 ---
 
 ## ✅ Project Requirements Checklist
@@ -120,8 +112,7 @@ src/
 
 ```js
 const response = await axios.get(
-  `https://newsapi.org/v2/top-headlines?category=sports&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`
-);
+  `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`);
 ```
 
 ---
