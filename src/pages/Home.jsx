@@ -6,12 +6,14 @@ export default function Home() {
     const [getNews, setGetNews] = useState([]);
     //state to manage index of carousal
     const [index, setIndex] = useState(0);
+    //Assuming country to be United states
+    const country = "us";
     //Boolean to disable the Prev and next button
     let isFirst, isLast;
     const apiKey = import.meta.env.VITE_API_KEY;
     async function getData() {
         try {
-            let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`)
+            let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${apiKey}`)
             if (res.data.articles.length > 0) {
                 setGetNews(res.data.articles);
             }

@@ -9,9 +9,11 @@ export default function Sports() {
     //booleans to disbale prev and next button
     let isFirst,isLast;
     const apiKey = import.meta.env.VITE_API_KEY;
+    //Assuming country to be United states
+    const country = "us"
     async function getData() {
         try {
-            let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=sports&apiKey=${apiKey}`)
+            let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=sports&apiKey=${apiKey}`)
             if (res.data.articles.length > 0) {
                 setSportsNews(res.data.articles);
             }

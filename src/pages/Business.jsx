@@ -7,12 +7,14 @@ export default function Business() {
     //state to manage index of carousal
     const [businessIndex, setBusinessIndex] = useState(0);
     const apiKey = import.meta.env.VITE_API_KEY;
+    //Assuming country to be United states
+    const country ="us";
     //booleans to disable prev and next buttons
     let isFirst;
     let isLast;
     async function getData() {
         try {
-            let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${apiKey}`)
+            let res = await axios.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=business&apiKey=${apiKey}`)
             if (res.data.articles.length > 0) {
                 setBusinessNews(res.data.articles);                
             }

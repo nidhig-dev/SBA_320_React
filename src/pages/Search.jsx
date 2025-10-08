@@ -15,6 +15,8 @@ export default function Search() {
     //Boolean to disable the Prev and next button
     let isFirst, isLast;
     const apiKey = import.meta.env.VITE_API_KEY;
+    //Assuming language to be "English". Eventually there would a drop down button where user can select a language
+    const lang = "en";
     function handleChange(e) {
         setSearchNews(e.target.value);
     }
@@ -26,7 +28,7 @@ export default function Search() {
                 setSearchResult([]);
             }
             else {
-                let res = await axios.get(`https://newsapi.org/v2/everything?q=${searchNews}&language=en&sortBy=relevancy&apiKey=${apiKey}`)                
+                let res = await axios.get(`https://newsapi.org/v2/everything?q=${searchNews}&language=${lang}&sortBy=relevancy&apiKey=${apiKey}`)                
                 if (res.data.articles.length > 0) {
                     setSearchResult(res.data.articles);                   
                     setSearchNews("");
@@ -35,10 +37,10 @@ export default function Search() {
                     console.error("No data found")
                     setSearchResult("");
                     setSearchNews("");
-                }
-                setDisplay(true);
-                searchRef.current.focus();
+                }                
             }
+            setDisplay(true);
+            searchRef.current.focus();            
         }
         catch (err) {
             console.error(err.message)

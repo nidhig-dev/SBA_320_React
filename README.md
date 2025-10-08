@@ -8,10 +8,10 @@ A dynamic and responsive news website built using **React**, powered by the **Ne
 
 * **4 Main Pages**:
 
-  * 🏠 **Home** – Displays top trending headlines.
+  * 🏠 **Home** – Displays top trending headlines across all categories.
   * 💼 **Business** – Displays all the latest business-related news.
-  * 🏅 **Sports** – Shows all the lates sports news.
-  * 🔍 **Search** – Allows users to search news articles by keyword.
+  * 🏅 **Sports** – Displays all the latest sports news.
+  * 🔍 **Search** – Allows users to search news articles by a keyword.
 
 * **Navigation**:
 
@@ -77,22 +77,7 @@ Open your browser at [http://localhost:5173](http://localhost:5173)
 
 ## 🔧 Project Structure
 
-```bash
-src/
-├── components/
-│   └── NavBar.jsx│   
-├── pages/
-│   ├── Business.jsx
-│   ├── Home.jsx
-│   ├── Missing.jsx
-│   ├── Search.jsx
-│   └── Sports.jsx
-├── App.css
-├── App.jsx
-├── index.css
-└── main.jsx
-
-```
+![Project Structure](<Screenshot 2025-10-08 152536.png>)
 ---
 
 ## ✅ Project Requirements Checklist
